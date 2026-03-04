@@ -2,8 +2,9 @@ name: Selenium CI/CD
 
 on:
   push:
-    branches: [ "master" ] # Se lance dès que tu envoies du code sur master
-
+    branches: [ "master" ]
+  schedule:
+    - cron: '0 8 * * *' # Se lance tous les jours à 8h00 UTC
 jobs:
   build:
     runs-on: ubuntu-latest # Le robot utilise un ordinateur Linux gratuit

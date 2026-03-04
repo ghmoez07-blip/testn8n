@@ -22,3 +22,10 @@ jobs:
 
     - name: Run Selenium Tests
       run: mvn clean test # Étape 3 : Il lance tes tests Cucumber !
+      
+    - name: Archive Cucumber Report
+      if: always() # Très important : on veut le rapport même si le test échoue !
+      uses: actions/checkout@v4
+      with:
+        name: cucumber-report
+        path: target/cucumber-reports.html

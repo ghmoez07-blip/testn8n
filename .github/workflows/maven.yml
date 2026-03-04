@@ -1,0 +1,23 @@
+name: Selenium CI/CD
+
+on:
+  push:
+    branches: [ "master" ] # Se lance dès que tu envoies du code sur master
+
+jobs:
+  build:
+    runs-on: ubuntu-latest # Le robot utilise un ordinateur Linux gratuit
+
+    steps:
+    - uses: actions/checkout@v4 # Étape 1 : Le robot télécharge ton code
+    
+    - name: Set up JDK 17
+      uses: actions/setup-java@v4 # Étape 2 : Il installe Java
+      with:
+        java-package: jdk
+        java-version: '17'
+        distribution: 'temurin'
+        cache: maven
+
+    - name: Run Selenium Tests
+      run: mvn clean test # Étape 3 : Il lance tes tests Cucumber !
